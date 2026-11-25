@@ -145,19 +145,3 @@ jobs:
       - name: Publish the report in the job summary
         if: always()
         run: test -f out/report/report.md && cat out/report/report.md >> "$GITHUB_STEP_SUMMARY" || true
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        if: always()
-        with:
-          name: pmc-bibliography-report
-          path: |
-            out/report
-            out/bibliography.jsonl
-          if-no-files-found: ignore
-      - name: Preserve full forward extraction separately from the scored report
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        if: always()
-        with:
-          name: pmc-forward-extraction
-          path: |
-            out/extract.jsonl
-          if-no-files-found: ignore
